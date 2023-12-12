@@ -7,6 +7,9 @@ function myFun(id) {
 }
 
 Function.prototype.myCall = function (obj, ...args) {
+  if (typeof this !== "function") {
+    throw new Error(this + "is not callable");
+  }
   obj.fn = this;
   obj.fn(...args);
 };

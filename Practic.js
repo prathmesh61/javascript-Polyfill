@@ -1,6 +1,19 @@
 let names = ["pratham", "pooja", "suraj", "ramesh"];
 let num = [3, 4, 5, 6];
 
+//  find
+Array.prototype.myFind = function (callback) {
+  let result = undefined;
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      result = this[i];
+    }
+  }
+  return result;
+};
+let nnn = num.myFind((val, i) => val === 7);
+// console.log(nnn);
+
 // reduce
 Array.prototype.newReduce = function (callback, initval = null) {
   let acc = initval;

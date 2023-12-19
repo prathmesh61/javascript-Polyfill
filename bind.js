@@ -18,3 +18,18 @@ Function.prototype.myBind = function (obj, ...args) {
 };
 let neBind = myFun.myBind(obj, "870@@");
 neBind();
+
+// version 2 of bind
+Function.prototype.bind = function (obj, ...args) {
+  return function (...newArgs) {
+    if (obj === undefined || obj === null) {
+      obj = globalThis; // or use `window` in a browser environment
+    }
+
+    if (typeof obj !== "object" && typeof obj !== "function") {
+      throw new TypeError('bind - "this" must be an object or function');
+    }
+
+    return originalFunction.apply(obj, args.concat(newArgs));
+  };
+};
